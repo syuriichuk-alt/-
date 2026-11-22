@@ -1,0 +1,96 @@
+# ============================================================
+#  Кулачник (Brawler) — конфігурація. Після змін: /brawler reload
+# ============================================================
+
+# --- Кулачні атаки ---
+fist:
+  base-damage: 1.0                # шкода кулака БЕЗ зброї в спец. слоті (ваніль = 1.0)
+  weapon-damage-multiplier: 1.0   # множник базової шкоди зброї зі спец. слота
+  require-empty-hands: true       # бафи зброї діють, лише коли ОБИДВІ руки порожні
+
+# --- Увімкнення/вимкнення окремих здібностей ---
+abilities:
+  sprint: true
+  mace: true
+  sword: true
+  axe: true
+  shield: true
+  bow: true
+  totem: true
+
+# --- Пасивки зброї (меч/сокира) ---
+passive:
+  hits-required: 3     # кожен N-й успішний удар
+  min-charge: 0.5      # мінімальна «зарядка» удару (0..1), щоб він рахувався
+
+mace:
+  smash-enabled: true              # ванільний smash-удар по висоті падіння
+  wind-burst-base-height: 7.0      # висота підкидання Wind Burst I (блоки, приблизно)
+  wind-burst-height-step: 4.0      # +блоків за кожен наступний рівень
+  # Пасивка булави — лазіння по стінах: Shift біля стіни = висіти, Пробіл = підтягнутися вгору
+  wall-climb-enabled: true
+  wall-climb-height: 1.3           # на скільки блоків підтягується за одне натискання
+  wall-climb-cooldown-ticks: 8
+
+sword:
+  splash-radius: 3.0
+  splash-damage-multiplier: 0.6    # частка шкоди для додаткових цілей (Sweeping Edge збільшує)
+  max-targets: 10
+  hit-players: true
+
+axe:
+  launch-height: 5.0               # висота підкидання (блоки)
+  max-launch-height: 10.0          # жорсткий ліміт (захист від надмірного підкидання)
+  launch-players: true
+  target-immunity-seconds: 5.0     # імунітет цілі до повторного підкидання
+  knockback-distance: 5.0          # наступний удар по підкинутій цілі відкидає її на стільки блоків
+  knockback-mark-seconds: 10.0     # скільки секунд діє «мітка» відкидання
+  excluded-entities: [ENDER_DRAGON, WITHER, WARDEN, ELDER_GUARDIAN]
+
+# --- Допоміжна рука ---
+shield:
+  cooldown-seconds: 30
+  active-seconds: 3.0              # скільки секунд «щит» очікує на атаку
+  reflect-causes: [ENTITY_ATTACK, ENTITY_SWEEP_ATTACK, PROJECTILE]
+
+bow:
+  cooldown-seconds: 30
+  arrow-speed: 3.0
+  leap-distance: 5.0               # після влучання підкидає вас у бік цілі на стільки блоків
+  leap-height-velocity: 0.5        # висота дуги стрибка
+  cap-to-target: true              # не перелітати ціль, якщо вона ближче за leap-distance
+  hit-players: true
+  hit-mobs: true
+
+# --- Розгін під час бігу ---
+sprint:
+  start-multiplier: 0.75           # швидкість на початку бігу (75%)
+  max-multiplier: 1.5              # максимальна швидкість (150%)
+  time-to-max-seconds: 4.0
+  update-interval-ticks: 2
+
+# --- Ефекти ---
+effects:
+  particles: true
+  hit-particles: true
+  attack-bar: true                 # плашка «Атака ... / Атака готова»
+  sounds: true
+  sound-volume: 1.0
+
+# --- Повідомлення (& — кольорові коди) ---
+messages:
+  prefix: "&6[Кулачник] &f"
+  class-selected: "Ви обрали клас &eКулачник&f!"
+  class-already: "Ви вже &eКулачник&f."
+  class-reset: "Клас скинуто. Предмети зі спец. слотів повернуто в інвентар."
+  no-class: "У вас немає класу."
+  not-brawler: "Це доступно лише класу «Кулачник». Оберіть клас: &e/class"
+  cooldown: "&cЗдібність «{ability}» ще недоступна. Залишилось: &e{time}"
+  shield-on: "&bЩит активовано на {seconds} с — наступна атака буде відбита!"
+  shield-reflect: "&aАтаку заблоковано, шкоду ({damage}) повернуто ворогу!"
+  bow-fired: "&eСтрілу випущено! Після влучання вас підкине до цілі."
+  bow-leap: "&aСтрибок до цілі!"
+  totem-used: "&6Тотем безсмертя врятував вас!"
+  reloaded: "Конфігурацію перезавантажено."
+  player-only: "Ця команда лише для гравців."
+  no-permission: "&cНемає прав."

@@ -1,0 +1,21 @@
+name: BrawlerClass
+version: ${project.version}
+main: ua.brawler.BrawlerPlugin
+api-version: '1.21'
+description: RPG-клас «Кулачник» (Brawler)
+commands:
+  class:
+    description: Відкрити меню вибору класу
+    usage: /class
+    permission: brawler.class
+  brawler:
+    description: Спеціальні слоти Кулачника
+    usage: /brawler [reload]
+    permission: brawler.use
+permissions:
+  brawler.class:
+    default: true
+  brawler.use:
+    default: true
+  brawler.admin:
+    default: op
